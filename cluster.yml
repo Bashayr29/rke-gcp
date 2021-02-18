@@ -1,18 +1,50 @@
 # If you intened to deploy Kubernetes in an air-gapped environment,
 # please consult the documentation on how to configure custom RKE images.
 nodes:
-- address: 164.90.254.133
+- address: 144.126.249.70
   port: "22"
-  internal_address: ""
+  internal_address: 10.108.0.2
   role:
   - controlplane
   - worker
   - etcd
-  hostname_override: ""
+  hostname_override: "node01"
   user: root
   docker_socket: /var/run/docker.sock
   ssh_key: ""
-  ssh_key_path: "~/.ssh/id_rsa"
+  ssh_key_path: ~/.ssh/id_rsa
+  ssh_cert: ""
+  ssh_cert_path: ""
+  labels: {}
+  taints: []
+- address: 144.126.249.71
+  port: "22"
+  internal_address: 10.108.0.4
+  role:
+  - controlplane
+  - worker
+  - etcd
+  hostname_override: node02
+  user: root
+  docker_socket: /var/run/docker.sock
+  ssh_key: ""
+  ssh_key_path: ~/.ssh/id_rsa
+  ssh_cert: ""
+  ssh_cert_path: ""
+  labels: {}
+  taints: []
+- address: 144.126.249.73
+  port: "22"
+  internal_address: 10.108.0.3
+  role:
+  - controlplane
+  - worker
+  - etcd
+  hostname_override: node03
+  user: root
+  docker_socket: /var/run/docker.sock
+  ssh_key: ""
+  ssh_key_path: ~/.ssh/id_rsa
   ssh_cert: ""
   ssh_cert_path: ""
   labels: {}
@@ -33,9 +65,7 @@ services:
     snapshot: null
     retention: ""
     creation: ""
-    backup_config:
-      interval_hours: 6
-      retention: 8
+    backup_config: null
   kube-api:
     image: ""
     extra_args: {}
