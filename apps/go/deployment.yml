@@ -17,6 +17,7 @@ spec:
       containers:
         - name: hi-beesh-app
           image: bashayralabdullah/hi-beesh-app:v.02
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
 
